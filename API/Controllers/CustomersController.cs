@@ -1,8 +1,8 @@
-using API.Data;
-using API.Entities;
+using CineVerse.API.Data;
+using CineVerse.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
+namespace CineVerse.API.Controllers;
 
 [ApiController]
 [Route("v1/[controller]")]
