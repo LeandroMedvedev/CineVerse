@@ -2,7 +2,7 @@
 
 Olá, Dev!!!
 
-Que tal começarmos a entender o ciclo de vida de desenvolvimento de software através da construção de um projeto do zero? Vamos entender como funciona esse desenvolvimento durante as diferentes etapas do processo, qual a necessidade de cada artefato e como podemos chegar nas novas tendências de programação através dessa modelagem. 
+Que tal começarmos a entender o ciclo de vida de desenvolvimento de software através da construção de um projeto do zero? Vamos entender como funciona esse desenvolvimento durante as diferentes etapas do processo, qual a necessidade de cada artefato e como podemos chegar às novas tendências de programação através dessa modelagem. 
 
 Faremos isso tudo na nossa disciplina de Projeto de Bloco Desenvolvimento Back-End organizada em 10 features:
 

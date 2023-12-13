@@ -477,6 +477,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # My additions
-ToDo.md
-API\Instructions
-API\appsettings.json
+./ToDo.md
+./API/Instructions
+./API/appsettings.json
