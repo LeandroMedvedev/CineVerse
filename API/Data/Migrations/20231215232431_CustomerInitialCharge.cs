@@ -8,13 +8,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddInitialChargeCustomer : Migration
+    public partial class CustomerInitialCharge : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             var context = new DataContext();
-            
+
             context.Customer.AddRange(GetInitialCharge());
             context.SaveChanges();
         }
@@ -22,14 +21,14 @@ namespace API.Data.Migrations
         private static IList<Customer> GetInitialCharge()
         {
             var password = "wW*8uuuu";
-            var john = new string[2] {"John", "Locke"};
-            var hugo = new string[2] {"Hugo", "Reyes"};
-            var kate = new string[2] {"Kate", "Austen"};
-            var jack = new string[2] {"Jack", "Shephard"};
-            var james = new string[2] {"James", "Sawyer"};
-            var sayid = new string[2] {"Sayid", "Jarrah"};
-            var desmond = new string[2] {"Desmond", "Hume"};
-            var benjamin = new string[2] {"Benjamin", "Linus"};
+            var john = new string[2] { "John", "Locke" };
+            var hugo = new string[2] { "Hugo", "Reyes" };
+            var kate = new string[2] { "Kate", "Austen" };
+            var jack = new string[2] { "Jack", "Shephard" };
+            var james = new string[2] { "James", "Sawyer" };
+            var sayid = new string[2] { "Sayid", "Jarrah" };
+            var desmond = new string[2] { "Desmond", "Hume" };
+            var benjamin = new string[2] { "Benjamin", "Linus" };
 
             return new List<Customer>()
             {
@@ -114,6 +113,6 @@ namespace API.Data.Migrations
                     Password = password,
                 },
             };
-        }            
+        }
     }
 }

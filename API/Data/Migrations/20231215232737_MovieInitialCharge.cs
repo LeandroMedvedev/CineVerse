@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddInitialChargeMovie : Migration
+    public partial class MovieInitialCharge : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace API.Data.Migrations
 
         private static IList<Movie> GetInitialCharge() => new List<Movie>
         {
-            new() 
+            new()
             {
                 Title = "Tempo de Matar",
                 OriginalTitle = "A Time to Kill",
@@ -36,7 +36,7 @@ namespace API.Data.Migrations
                 Dubbed = false
             },
             new()
-            {                    
+            {
                 Title = "O Homem que Fazia Chover",
                 OriginalTitle = "The Rainmaker",
                 Synopsis = "Um advogado recém-formado trabalha em seu primeiro caso contra uma companhia de seguros que suspende o plano de saúde de uma vítima de leucemia. O profissional idealista enfrentará júris intensos e lutará a favor dos princípios morais em sua batalha contra a corrupção.",
@@ -96,7 +96,7 @@ namespace API.Data.Migrations
                 Dubbed = false
             },
             new()
-            {                    
+            {
                 Title = "Ilha do Medo",
                 OriginalTitle = "Shutter Island",
                 Synopsis = "Nos anos 1950, a fuga de uma assassina leva o detetive Teddy Daniels e seu parceiro a investigarem o seu desaparecimento de um quarto trancado em um hospital psiquiátrico. Lá, uma rebelião se inicia e o agente terá que enfrentar seus próprios medos.",
@@ -319,7 +319,7 @@ namespace API.Data.Migrations
                 BasedOnRealFacts = true,
                 BasedOnBooks = true,
                 Dubbed = false
-            }            
+            }
         };
     }
 }

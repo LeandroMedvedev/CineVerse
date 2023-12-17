@@ -50,4 +50,6 @@ public abstract class PhysicalMedia
     [Required(AllowEmptyStrings = false, ErrorMessage = "Campo obrigatório")]
     [DataType(DataType.Currency)]
     public double Price { get; set; }
+
+    // public ICollection<Genre>? Genres { get; set; }
 }

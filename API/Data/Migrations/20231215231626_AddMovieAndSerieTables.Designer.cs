@@ -4,6 +4,7 @@ using CineVerse.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231215231626_AddMovieAndSerieTables")]
+    partial class AddMovieAndSerieTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,31 +24,6 @@ namespace API.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CineVerse.API.Models.Cart", b =>
-                {
-                    b.Property<int>("CartId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
-
-                    b.Property<float>("Freight")
-                        .HasColumnType("real");
-
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Total")
-                        .HasColumnType("real");
-
-                    b.HasKey("CartId");
-
-                    b.ToTable("Cart");
-                });
 
             modelBuilder.Entity("CineVerse.API.Models.Customer", b =>
                 {
@@ -205,28 +183,6 @@ namespace API.Data.Migrations
                     b.HasKey("SerieId");
 
                     b.ToTable("Serie");
-                });
-
-            modelBuilder.Entity("CineVerse.API.Models.Stock", b =>
-                {
-                    b.Property<int>("StockId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StockId"));
-
-                    b.Property<DateTime>("EntryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExitDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte>("Quantity")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("StockId");
-
-                    b.ToTable("Stock");
                 });
 #pragma warning restore 612, 618
         }

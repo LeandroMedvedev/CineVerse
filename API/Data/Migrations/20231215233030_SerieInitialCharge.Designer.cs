@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231212235006_AddInitialChargeMovie")]
-    partial class AddInitialChargeMovie
+    [Migration("20231215233030_SerieInitialCharge")]
+    partial class SerieInitialCharge
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,21 +59,26 @@ namespace API.Data.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("CineVerse.API.Models.PhysicalMedia", b =>
+            modelBuilder.Entity("CineVerse.API.Models.Movie", b =>
                 {
-                    b.Property<int>("PhysicalMediaId")
+                    b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PhysicalMediaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
+
+                    b.Property<bool>("BasedOnBooks")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("BasedOnRealFacts")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Classification")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Dubbed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Genre")
                         .IsRequired()
@@ -83,6 +88,9 @@ namespace API.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
+
+                    b.Property<int>("PhysicalMediaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PosterPath")
                         .IsRequired()
@@ -109,45 +117,94 @@ namespace API.Data.Migrations
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
-                    b.HasKey("PhysicalMediaId");
+                    b.HasKey("MovieId");
 
-                    b.ToTable("PhysicalMedia");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("PhysicalMedia");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("CineVerse.API.Models.Movie", b =>
-                {
-                    b.HasBaseType("CineVerse.API.Models.PhysicalMedia");
-
-                    b.Property<bool>("BasedOnBooks")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("BasedOnRealFacts")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Dubbed")
-                        .HasColumnType("bit");
-
-                    b.HasDiscriminator().HasValue("Movie");
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("CineVerse.API.Models.Serie", b =>
                 {
-                    b.HasBaseType("CineVerse.API.Models.PhysicalMedia");
+                    b.Property<int>("SerieId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SerieId"));
 
                     b.Property<bool>("Awarded")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Classification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Episodes")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OriginalTitle")
+                        .IsRequired()
+                        .HasMaxLength(45)
+                        .HasColumnType("nvarchar(45)");
+
+                    b.Property<int>("PhysicalMediaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PosterPath")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("Premiere")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Runtime")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Seasons")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Serie");
+                    b.Property<string>("Synopsis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(45)
+                        .HasColumnType("nvarchar(45)");
+
+                    b.HasKey("SerieId");
+
+                    b.ToTable("Serie");
+                });
+
+            modelBuilder.Entity("CineVerse.API.Models.Stock", b =>
+                {
+                    b.Property<int>("StockId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StockId"));
+
+                    b.Property<DateTime>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExitDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Quantity")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("StockId");
+
+                    b.ToTable("Stock");
                 });
 #pragma warning restore 612, 618
         }
