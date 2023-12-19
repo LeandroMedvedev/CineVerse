@@ -8,9 +8,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class SerieInitialCharge : Migration
+    public partial class AddSerieInitialCharge : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             var context = new DataContext();

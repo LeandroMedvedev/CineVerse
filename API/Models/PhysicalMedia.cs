@@ -51,5 +51,8 @@ public abstract class PhysicalMedia
     [DataType(DataType.Currency)]
     public double Price { get; set; }
 
-    // public ICollection<Genre>? Genres { get; set; }
+    // relationships
+    public ICollection<Genre> Genres { get; set; }
+    public ICollection<Cart> Carts { get; set; }
+    public ICollection<Stock> Stocks { get; set; }
 }

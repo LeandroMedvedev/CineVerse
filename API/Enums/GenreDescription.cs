@@ -1,0 +1,31 @@
+namespace CineVerse.API.Enums;
+
+public enum GenreDescription
+{
+    Action = 1,
+    Adventure = 2,
+    ArtCinema = 3,
+    Chanchada = 4,
+    Comedy = 5,
+    ActionComedy = 6,
+    HorrorComedy = 7,
+    DramaticComedy = 8,
+    RomanticComedy = 9,
+    Dance = 10,
+    Documentary = 11,
+    Documentation = 12,
+    Drama = 13,
+    Espionage = 14,
+    Western = 15,
+    Fantasy = 16,
+    ScientificFantasy = 17,
+    ScienceFiction = 18,
+    MovieswithTricks = 19,
+    WarFilms = 20,
+    Mystery = 21,
+    Musical = 22,
+    CrimeFilm = 23,
+    Romance = 24,
+    Horror = 25,
+    Thriller = 26,        
+}

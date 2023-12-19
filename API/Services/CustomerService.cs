@@ -14,9 +14,6 @@ public sealed class CustomerService : ICustomerService
 
     public async Task<Customer> CreateCustomerAsync(Customer customer)
     {
-        customer.CreatedAt = DateTime.Now;
-        customer.UpdatedAt = DateTime.Now;
-
         _context.Customer.Add(customer);
         await _context.SaveChangesAsync();
 
@@ -25,31 +22,31 @@ public sealed class CustomerService : ICustomerService
 
     public async Task<List<Customer>> GetAllCustomersAsync()
         => await _context.Customer.ToListAsync();
- 
+
     public async Task<Customer> GetCustomerByIdAsync(int id)
         => await _context.Customer.FindAsync(id);
 
-    public async Task UpdateCustomerAsync(int id, Customer data)
+    public async Task UpdateCustomerAsync(Customer customer, Customer data)
     {
-        var customer = await _context.Customer.FindAsync(id);
-
-        customer.UserName = data.UserName;
+        customer.UpdatedAt = DateTime.UtcNow;
         customer.FirstName = data.FirstName;
         customer.LastName = data.LastName;
-        customer.Email = data.Email;
+        customer.UserName = data.UserName;
         customer.Password = data.Password;
-        customer.UpdatedAt = DateTime.Now;
+        customer.Email = data.Email;
 
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteCustomerAsync(int id)
+    public async Task DeleteCustomerAsync(Customer customer)
     {
-        var customer = await _context.Customer.FindAsync(id);
-        if (customer != null)
-        {
-            _context.Customer.Remove(customer);
-            await _context.SaveChangesAsync();
-        }
+        _context.Customer.Remove(customer);
+        await _context.SaveChangesAsync();
     }
+
+    public async Task<bool> CustomerExistsAsync(string email)
+        => await _context.Customer.AnyAsync(x => x.Email == email.ToLower());
+
+    public async Task<Customer> CustomerByIdAsync(int id)
+        => await _context.Customer.FindAsync(id);
 }

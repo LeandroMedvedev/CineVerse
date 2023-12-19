@@ -1,4 +1,5 @@
 using CineVerse.API.Data;
+using CineVerse.API.Helpers;
 using CineVerse.API.Interfaces;
 using CineVerse.API.Models;
 
@@ -25,22 +26,22 @@ public sealed class MovieService : IMovieService
 
     public async Task<Movie> GetMovieByIdAsync(int id)
         => await _context.Movie.FirstOrDefaultAsync(x => x.MovieId == id);
-    
-    public async Task<Movie> UpdateMovieAsync(Movie movie)
+
+    public async Task UpdateMovieAsync(Movie movie)
     {
         _context.Entry(movie).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-
-        return movie;
     }
 
-    public async Task DeleteMovieAsync(int id)
+    public async Task DeleteMovieAsync(Movie movie)
     {
-        var movie = await _context.Movie.FindAsync(id);
-        if (movie != null)
-        {
-            _context.Movie.Remove(movie);
-            await _context.SaveChangesAsync();
-        }
+        _context.Movie.Remove(movie);
+        await _context.SaveChangesAsync();
     }
+
+    public async Task<bool> MovieExistsAsync(string title)
+        => await _context.PhysicalMedia.AnyAsync(x => x.Title == Text.CapitalizeWords(title));
+
+    public async Task<Movie> MovieByIdAsync(int id)
+        => await _context.Movie.FindAsync(id);
 }

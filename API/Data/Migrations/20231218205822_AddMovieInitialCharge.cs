@@ -8,9 +8,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class MovieInitialCharge : Migration
+    public partial class AddMovieInitialCharge : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             var context = new DataContext();

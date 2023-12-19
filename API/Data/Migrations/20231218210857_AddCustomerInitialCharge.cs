@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CustomerInitialCharge : Migration
+    public partial class AddCustomerInitialCharge : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
